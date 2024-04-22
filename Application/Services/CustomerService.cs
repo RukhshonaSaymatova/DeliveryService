@@ -9,33 +9,39 @@ using System.Xml.Linq;
 
 namespace Application.Services
 {
-    public class CustomerService :IBaseService<Customer>
+    public class CustomerService : IBaseService<Customer>
     {
-        private readonly IBaseRepository<Customer> _CustomerRepository;
+        private readonly IBaseRepository<Customer> _customerRepository;
 
-        public CustomerService(IBaseRepository<Customer> buildingRepository)
+        public CustomerService(IBaseRepository<Customer> customerRepository)
         {
-            _CustomerRepository = buildingRepository;
+            _customerRepository = customerRepository;
         }
+
 
         public async Task<Customer> CreateAsync(Customer building, CancellationToken token = default)
         {
-            return await _CustomerRepository.CreateAsync(building, token);
+            return await _customerRepository.CreateAsync(building, token);
         }
 
-        public async Task<bool> DeleteAsync(Customer customers, CancellationToken token = default)
+        public async Task<bool> DeleteAsync(int id, CancellationToken token = default)
         {
-            return await _CustomerRepository.DeleteAsync(customers, token);
+            var anime = await _customerRepository.GetAsync(id, token);
+
+            if (anime == null)
+                return false;
+
+            return await _customerRepository.DeleteAsync(anime, token);
         }
 
         public async Task<IEnumerable<Customer>> GetAllAsync(CancellationToken token = default)
         {
-            return await _CustomerRepository.GetAllAsync(token);
+            return await _customerRepository.GetAllAsync(token);
         }
 
         public async Task<Customer> GetAsync(int id, CancellationToken token = default)
         {
-            return await _CustomerRepository.GetAsync(id, token);
+            return await _customerRepository.GetAsync(id, token);
         }
         public async Task<bool> UpdateAsync(Customer customers, CancellationToken token = default)
         {
@@ -52,7 +58,7 @@ namespace Application.Services
          
 
 
-            return await _CustomerRepository.UpdateAsync(existingCustomer, token);
+            return await _customerRepository.UpdateAsync(existingCustomer, token);
 
         }
     }
