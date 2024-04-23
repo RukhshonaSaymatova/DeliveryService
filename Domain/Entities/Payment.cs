@@ -9,7 +9,6 @@ namespace Domain.Entities
     public class Payment: BaseEntity
     {
         public Order Orders { get; set; }
-
         public int OrderId { get; set; }
 
 

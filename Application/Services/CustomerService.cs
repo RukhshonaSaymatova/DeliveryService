@@ -19,19 +19,19 @@ namespace Application.Services
         }
 
 
-        public async Task<Customer> CreateAsync(Customer building, CancellationToken token = default)
+        public async Task<Customer> CreateAsync(Customer customer, CancellationToken token = default)
         {
-            return await _customerRepository.CreateAsync(building, token);
+            return await _customerRepository.CreateAsync(customer, token);
         }
 
         public async Task<bool> DeleteAsync(int id, CancellationToken token = default)
         {
-            var anime = await _customerRepository.GetAsync(id, token);
+            var customer = await _customerRepository.GetAsync(id, token);
 
-            if (anime == null)
+            if (customer == null)
                 return false;
 
-            return await _customerRepository.DeleteAsync(anime, token);
+            return await _customerRepository.DeleteAsync(customer, token);
         }
 
         public async Task<IEnumerable<Customer>> GetAllAsync(CancellationToken token = default)

@@ -16,6 +16,11 @@ namespace Application
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
             services.AddScoped<IBaseService<Customer>, CustomerService>();
+            services.AddScoped<IBaseService<DeliveryPerson>, DeliveryPersonService>();
+            services.AddScoped<IBaseService<DeliveryService>, DeliveryServiceService>();
+            services.AddScoped<IBaseService<Order>, OrderService>();
+            services.AddScoped<IBaseService<Payment>, PaymentService>();
+            services.AddScoped<IBaseService<Vehicle>, VehicleService>();
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             return services;
         }

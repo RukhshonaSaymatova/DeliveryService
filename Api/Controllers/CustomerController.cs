@@ -23,9 +23,9 @@ public class CustomerController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] CreateCustomerRequest request, CancellationToken token)
     {
-        var anime = _mapper.Map<Customer>(request);
+        var customer = _mapper.Map<Customer>(request);
 
-        var response = await _customerService.CreateAsync(anime, token);
+        var response = await _customerService.CreateAsync(customer, token);
         return CreatedAtAction(nameof(Create), new { id = response.Id }, response);
 
     }
@@ -79,7 +79,7 @@ public class CustomerController : ControllerBase
     {
         var response = await _customerService.DeleteAsync(id, token);
 
-        return response ? Ok() : NotFound($"Manga with ID {id} not found.");
+        return response ? Ok() : NotFound($"Customer with ID {id} not found.");
     }
 }
 
