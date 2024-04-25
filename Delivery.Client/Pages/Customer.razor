@@ -1,0 +1,51 @@
+﻿@page "/component"
+@using Contracts.Responses
+@using Delivery.Client.Services
+
+
+<h3>Data from RESTful API</h3>
+
+@if (data != null)
+{
+    <ul>
+        @foreach (var item in data)
+        {
+            <li>@item.Name</li>
+        }
+    </ul>
+}
+else
+{
+    <p>Loading data...</p>
+}
+
+@code {
+    private IEnumerable<SingleCustomerResponse> data;
+
+    [Inject]
+    private ApiService ApiService { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        data = await ApiService.Get<SingleCustomerResponse>("api/data");
+    }
+
+    // Метод для загрузки данных по идентификатору
+    private async Task LoadDataById(int id)
+    {
+        var item = await ApiService.GetById<SingleCustomerResponse>("api/Customer?id=" + id);
+        if (item != null)
+        {
+            // Добавляем элемент в список данных, если успешно получен
+            if (data == null)
+            {
+                data = new List<SingleCustomerResponse>();
+            }
+            ((List<SingleCustomerResponse>)data).Add(item);
+        }
+        else
+        {
+            // Обработка ошибки, если элемент не найден
+        }
+    }
+}

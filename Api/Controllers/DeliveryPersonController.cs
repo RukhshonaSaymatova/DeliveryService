@@ -3,6 +3,7 @@ using AutoMapper;
 using Contracts.Requests;
 using Contracts.Responses;
 using Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
@@ -20,6 +21,8 @@ public class DeliveryPersonController : ControllerBase
         _mapper = mapper;
         _deliveryPersonService = deliveryPersonService;
     }
+
+    [Authorize]
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] CreateDeliveryPersonRequest request, CancellationToken token)
     {

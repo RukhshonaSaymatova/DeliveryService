@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api", "Api\Api.csproj", "{A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contracts", "Contracts\Contracts.csproj", "{7D07CA03-9E7C-4513-B9C1-CBAF5CC62CBA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Delivery.Client", "Delivery.Client\Delivery.Client.csproj", "{D42A8DBE-D6F1-4312-B7A4-91E2B6FA6B55}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Delivery.Client", "Delivery.Client\Delivery.Client.csproj", "{D42A8DBE-D6F1-4312-B7A4-91E2B6FA6B55}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
